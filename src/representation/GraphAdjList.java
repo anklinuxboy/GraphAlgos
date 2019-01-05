@@ -3,6 +3,7 @@ package representation;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class GraphAdjList<T> {
 
@@ -18,6 +19,44 @@ public class GraphAdjList<T> {
 
     public void insertEdge(T vertex, T edgeVertex) {
         insertEdge(vertex, edgeVertex, directed);
+    }
+
+    public int getNumberOfEdges() {
+        return edges;
+    }
+
+    public Set<T> getVertices() {
+        return graph.keySet();
+    }
+
+    // TODO check for null list
+    public List<Edge> getVertexEdges(T vertex) {
+        return graph.get(vertex);
+    }
+
+    public List<T> getVertexNeighbors(T vertex) {
+        List<T> neighbors = new ArrayList<>();
+
+        for (Edge edge : getVertexEdges(vertex)) {
+            neighbors.add(edge.vertex);
+        }
+
+        return neighbors;
+    }
+
+    public boolean isDirected() {
+        return directed;
+    }
+
+    public void print() {
+        for (T key : graph.keySet()) {
+            List<Edge> edges = graph.get(key);
+            System.out.print(key.toString() + ": ");
+            for (Edge edge : edges) {
+                System.out.print(" " + edge.vertex.toString());
+            }
+            System.out.println();
+        }
     }
 
     private void insertEdge(T vertex, T edgeVertex, boolean directed) {
@@ -39,22 +78,7 @@ public class GraphAdjList<T> {
         }
     }
 
-    public int getEdges() {
-        return edges;
-    }
-
-    public void print() {
-        for (T key : graph.keySet()) {
-            List<Edge> edges = graph.get(key);
-            System.out.print(key.toString() + ": ");
-            for (Edge edge : edges) {
-                System.out.print(" " + edge.vertex.toString());
-            }
-            System.out.println();
-        }
-    }
-
-    private class Edge {
+    public class Edge {
         T vertex;
         int weight;
 

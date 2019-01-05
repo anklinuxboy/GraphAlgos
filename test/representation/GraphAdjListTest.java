@@ -16,6 +16,6 @@ public class GraphAdjListTest {
         graph.insertEdge(2, 3);
 
         graph.print();
-        Assertions.assertEquals(6, graph.getEdges());
+        Assertions.assertEquals(6, graph.getNumberOfEdges());
     }
 }
