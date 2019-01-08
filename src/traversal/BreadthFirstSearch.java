@@ -4,7 +4,7 @@ import representation.GraphAdjList;
 
 import java.util.*;
 
-public class BreadthFirstSearch<T> {
+public class BreadthFirstSearch<T> implements Search<T> {
 
     private GraphAdjList<T> graph;
     private HashSet<T> discovered;
@@ -16,6 +16,7 @@ public class BreadthFirstSearch<T> {
         processed = new HashSet<>();
     }
 
+    @Override
     public void search(T start,
                        ProcessVertex<T> processVertexStart,
                        ProcessVertex<T> processVertexLate,
